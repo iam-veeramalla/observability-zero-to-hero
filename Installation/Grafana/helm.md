@@ -14,4 +14,9 @@
 
 ## Expose Grafana Service
 
-`kubectl expose service grafana — type=NodePort — target-port=3000 — name=grafana-ext`
+`kubectl expose service grafana --type=NodePort --target-port=3000 --name=grafana-ext`
+
+
+## The command to get grafana password does not work on windows cmd/powershell as base64 is not a recognoised command. Use the below command to extract the password.
+kubectl get secret --namespace default grafana -o jsonpath="{.data.admin-password}" | ForEach-Object { [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($_)) }
+
