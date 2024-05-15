@@ -20,3 +20,7 @@
 ## Install Grafana OSS 
 
 ```sudo apt-get install grafana```
+
+**For both Grafana and Prometheus**
+
+[Reference](https://ibrahims.medium.com/how-to-install-prometheus-and-grafana-on-ubuntu-22-04-lts-configure-grafana-dashboard-5d11e3cb3cfd)
