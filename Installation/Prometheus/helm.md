@@ -3,13 +3,13 @@
 ## Add helm repo
 
 ```javascript
-helm repo add prometheus-community https://prometheus-community.github.io/helm-charts`
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 ```
 
 ## Update helm repo
 
 ```javascript
-helm repo update`
+helm repo update
 ```
 
 ## Install helm 
