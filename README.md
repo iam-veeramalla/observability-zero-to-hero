@@ -10,14 +10,14 @@ Both Prometheus and Grafana have a very good documentation
 
 ## Pre-Requisite
 
-- Kubernetes Cluster (can be minikube)
-- Helm 
+- Kubernetes Cluster ([can be minikube](https://minikube.sigs.k8s.io/docs/start/?arch=%2Fwindows%2Fx86-64%2Fstable%2F.exe+download))
+- [Helm](https://helm.sh/docs/intro/install/) 
 
 If you don't have them installed. Follow the below links:
 
-[Install Minikube]("https://minikube.sigs.k8s.io/docs/start/")
+[Install Minikube](https://minikube.sigs.k8s.io/docs/start/)
 
-[Install Helm]("https://helm.sh/docs/intro/install/")
+[Install Helm](https://helm.sh/docs/intro/install/)
 
 <br></br>
 
