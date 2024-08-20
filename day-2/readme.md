@@ -88,7 +88,7 @@ helm repo update
 
 ### 🚀 Step 3: Deploy the chart into a new namespace "monitoring"
 ```bash
-kubeclt create ns monitoring
+kubectl create ns monitoring
 ```
 ```bash
 helm install monitoring \
