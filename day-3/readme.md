@@ -1,53 +1,53 @@
 
-## Metrics in Prometheus:
+## 📊 Metrics in Prometheus:
 - Metrics in Prometheus are the core data objects that represent measurements collected from monitored systems.
 - These metrics provide insights into various aspects of **system performance, health, and behavior**.
 
-## Labels:
+## 🏷️ Labels:
 - Metrics are paired with Labels.
 - Labels are key-value pairs that allow you to differentiate between dimensions of a metric, such as different services, instances, or endpoints.
 
 
-## Example:
+## 🔍 Example:
 ```bash
 container_cpu_usage_seconds_total{namespace="kube-system", endpoint="https-metrics"}
 ```
 - `container_cpu_usage_seconds_total` is the metric.
 - `{namespace="kube-system", endpoint="https-metrics"}` are the labels.
 
-## Types of Metrics in Prometheus
-- **Counter**:
+## 📈 Types of Metrics in Prometheus
+- 🔄️ **Counter**:
     - A Counter is a cumulative metric that represents a single numerical value that only ever goes up. It is used for counting events like the number of HTTP requests, errors, or tasks completed.
     - **Example**: Counting the number of times a container restarts in your Kubernetes cluster
     - **Metric Example**: `kube_pod_container_status_restarts_total`
 
-- **Gauge**:
+- 📏 **Gauge**:
     - A Gauge is a metric that represents a single numerical value that can go up and down. It is typically used for things like memory usage, CPU usage, or the current number of active users.
     - **Example**: Monitoring the memory usage of a container in your Kubernetes cluster.
     - **Metric Example**: `container_memory_usage_bytes`
 
-- **Histogram**:
+- 📊 **Histogram**:
     - A Histogram samples observations (usually things like request durations or response sizes) and counts them in configurable buckets.
     - It also provides a sum of all observed values and a count of observations.
     - **Example**: Measuring the response time of Kubernetes API requests in various time buckets.
     - **Metric Example**: `apiserver_request_duration_seconds_bucket`
 
-- Summary:
+- 📝 Summary:
     - Similar to a Histogram, a Summary samples observations and provides a total count of observations, their sum, and configurable quantiles (percentiles).
     - **Example**: Monitoring the 95th percentile of request durations to understand high latency in your Kubernetes API.
     - **Metric Example**: `apiserver_request_duration_seconds_sum`
 
-## What is PromQL?
+## 🛠️ What is PromQL?
 - PromQL (Prometheus Query Language) is a powerful and flexible query language used to query data from Prometheus.
 - It allows you to retrieve and manipulate time series data, perform mathematical operations, aggregate data, and much more.
 
-- Key Features of PromQL:
+- 🔑 Key Features of PromQL:
     - Selecting Time Series: You can select specific metrics with filters and retrieve their data.
     - Mathematical Operations: PromQL allows for mathematical operations on metrics.
     - Aggregation: You can aggregate data across multiple time series.
     - Functionality: PromQL includes a wide range of functions to analyze and manipulate data.
 
-## Basic Examples of PromQL
+## 💡 Basic Examples of PromQL
 - `container_cpu_usage_seconds_total`
     - Return all time series with the metric container_cpu_usage_seconds_total
 - `container_cpu_usage_seconds_total{namespace="kube-system",pod=~"kube-proxy.*"}`
@@ -55,7 +55,7 @@ container_cpu_usage_seconds_total{namespace="kube-system", endpoint="https-metri
 - `container_cpu_usage_seconds_total{namespace="kube-system",pod=~"kube-proxy.*"}[5m]`
     - Return a whole range of time (in this case 5 minutes up to the query time) for the same vector, making it a range vector.
 
-## Aggregation & Functions in PromQL
+## ⚙️ Aggregation & Functions in PromQL
 - Aggregation in PromQL allows you to combine multiple time series into a single one, based on certain labels.
 - **Sum Up All CPU Usage**:
     ```bash
