@@ -1,0 +1,97 @@
+## 🎛️ Instrumentation
+- Instrumentation refers to the process of adding monitoring capabilities to your applications, systems, or services.
+- This involves embedding/Writting code or using tools to collect metrics, logs, or traces that provide insights into how the system is performing.
+
+
+## 🎯 Purpose of Instrumentation:
+- **Visibility**: It helps you gain visibility into the internal state of your applications and infrastructure.
+- **Metrics Collection**: By collecting key metrics like CPU usage, memory consumption, request rates, error rates, etc., you can understand the health and performance of your system.
+- **Troubleshooting**: When something goes wrong, instrumentation allows you to diagnose the issue quickly by providing detailed insights.
+
+## ⚙️ How it Works:
+- **Code-Level Instrumentation**: You can add instrumentation directly in your application code to expose metrics. For example, in a `Node.js` application, you might use a library like prom-client to expose custom metrics.
+
+## 📈 Instrumentation in Prometheus:
+- 📤 **Exporters**: Prometheus uses exporters to collect metrics from different systems. These exporters expose metrics in a format that Prometheus can scrape and store.
+    - **Node Exporter**: Collects system-level metrics from Linux/Unix systems.
+    - **MySQL Exporter (For MySQL Database)**:  Collects metrics from a MySQL database.
+    - **ostgreSQL Exporter (For PostgreSQL Database)**: Collects metrics from a PostgreSQL database.
+- 📊 **Custom Metrics**: You can instrument your application to expose custom metrics that are relevant to your specific use case. For example, you might track the number of user logins per minute.
+
+
+# 🎯 Project Objectives
+- 🛠️ **Implement Custom Metrics in Node.js Application**: Use the prom-client library to write and expose custom metrics in the Node.js application.
+- 🚨 **Set Up Alerts in Alertmanager**: Configure Alertmanager to send email notifications if a container crashes more than three times.
+- 📝 **Set Up Logging**: Implement logging on both application and cluster (node) logs for better observability.
+
+## 1) Write Custom Metrics
+- Please take a look at `day-4/app-code/index.js` file to learn more about custom metrics. below is the brief overview
+- **Express Setup**: Initializes an Express application and sets up logging with Morgan.
+- **Logging with Pino**: Defines a custom logging function using Pino for structured logging.
+- **Prometheus Metrics with prom-client**: Integrates Prometheus for monitoring HTTP requests using the prom-client library:
+    - `http_requests_total`: counter
+    - `http_request_duration_seconds`: histogram
+    - `http_request_duration_summary_seconds`: summary
+    - `node_gauge_example`: gauge for tracking async task duration
+### Basic Routes:
+- `/` : Returns a "Running" status.
+- `/healthy`: Returns the health status of the server.
+- `/serverError`: Simulates a 500 Internal Server Error.
+- `/notFound`: Simulates a 404 Not Found error.
+- `/logs`: Generates logs using the custom logging function.
+- `/crash`: Simulates a server crash by exiting the process.
+- `/example`: Tracks async task duration with a gauge.
+- `/metrics`: Exposes Prometheus metrics endpoint.
+
+## 2) dockerize & push it to the registry
+- To containerize the application and push it to your Docker registry, run the following commands:
+```bash
+cd day-4
+
+docker build -t <<NAME_OF_YOUR_REPO>>:<<TAG>> app-code/
+```
+
+## 3) Kubernetes manifest
+- Review the Kubernetes manifest files located in `day-4/kubernetes-manifest`.
+- Apply the Kubernetes manifest files to your cluster by running:
+```bash
+kubectl apply -k kubernetes-manifest/
+```
+
+## 4) Test all the endpoints
+- Open a browser and get the LoadBalancer DNS name & hit the DNS name with following routes to test the application:
+    - `/`
+    - `/healthy`
+    - `/serverError`
+    - `/notFound`
+    - `/logs`
+    - `/crash`
+    - `/example`
+    - `/metrics`
+- Alternatively, you can run the automated script `test.sh`, which will automatically send random requests to the LoadBalancer and generate metrics:
+```bash
+./test.sh <<LOAD_BALANCER_DNS_NAME>>
+```
+
+## 5) Configure Alertmanager
+- Review the Alertmanager configuration files located in `day-4/alerts-alertmanager-servicemonitor-manifest` but below is the brief overview
+    - Before configuring Alertmanager, we need credentials to send emails. For this project, we are using Gmail, but any SMTP provider like AWS SES can be used. so please grab the credentials for that.
+    - Open your Google account settings and search App password & create a new password & put the password in `day-4/alerts-alertmanager-servicemonitor-manifest/email-secret.yml`
+
+- **HighCpuUsage**: Triggers a warning alert if the average CPU usage across instances exceeds 50% for more than 5 minutes.
+- **PodRestart**: Triggers a critical alert immediately if any pod restarts more than 2 times.
+- Apply the manifest files to your cluster by running:
+```bash
+kubectl apply -k alerts-alertmanager-servicemonitor-manifest/
+```
+- Wait for 4-5 minutes and then check the Prometheus UI to confirm that the custom metrics implemented in the Node.js application are available:
+    - `http_requests_total`: counter
+    - `http_request_duration_seconds`: histogram
+    - `http_request_duration_summary_seconds`: summary
+    - `node_gauge_example`: gauge for tracking async task duration
+
+## 6) Testing Alerts
+- To test the alerting system, manually crash the container more than 2 times to trigger an alert (email notification).
+- To crash the application container, hit the following endpoint
+- `<<LOAD_BALANCER_DNS_NAME>>/crash`
+- You should receive an email once the application container has restarted at least 3 times.

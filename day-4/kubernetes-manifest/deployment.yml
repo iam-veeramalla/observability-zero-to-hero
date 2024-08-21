@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: prometheus-deployment
+  name: prometheus-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: prometheus-deployment
+  template:
+    metadata:
+      labels:
+        app: prometheus-deployment
+    spec:
+      containers:
+      - image: ankitjodhani/prometheus:v2
+        name: prometheus
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 3000

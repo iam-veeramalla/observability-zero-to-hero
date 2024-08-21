@@ -1,0 +1,21 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    app: prometheus-service-service-monitor
+    release: monitoring
+  name: prometheus-service-service-monitor
+  namespace: monitoring
+spec:
+  jobLabel: job
+  endpoints:
+    - interval: 2s
+      port: prometheus-service-port
+      path: /metrics
+  selector:
+    matchLabels:
+      app: prometheus-service
+  namespaceSelector:
+    matchNames:
+      - default
+      

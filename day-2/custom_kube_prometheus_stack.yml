@@ -1,0 +1,19 @@
+alertmanager:
+  alertmanagerSpec:
+    # Selects Alertmanager configuration based on these labels. Ensure that the Alertmanager configuration has matching labels.
+    # ✅ Solves error: Misconfigured Alertmanager selectors can lead to missing alert configurations.
+    # ✅ Solves error: Alertmanager wasn't able to findout the applied CRD (kind: Alertmanagerconfig)
+    alertmanagerConfigSelector:
+      matchLabels:
+        release: monitoring
+
+    # Sets the number of Alertmanager replicas to 3 for high availability.
+    # ✅ Solves error: Single replica can cause alerting issues during pod failures.
+    # ✅ Solves error: Alertmanager Cluster Status is Disabled (GitHub issue)
+    replicas: 2
+
+    # Sets the strategy for matching Alertmanager configurations. 'None' means no specific matching strategy.
+    # ✅ Solves error: Incorrect matcher strategy can lead to unhandled alert configurations.
+    # ✅ Solves error: Get rid of namespace matchers when creating AlertManagerConfig (GitHub issue)
+    alertmanagerConfigMatcherStrategy:
+      type: None
