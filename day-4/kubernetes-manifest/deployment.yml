@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   labels:
     app: prometheus-deployment
+    # run: prometheus-deployment
   name: prometheus-deployment
 spec:
   replicas: 1
@@ -15,7 +16,7 @@ spec:
         app: prometheus-deployment
     spec:
       containers:
-      - image: ankitjodhani/prometheus:v2
+      - image: <<IMAGE_NAME_OR_ID>>
         name: prometheus
         imagePullPolicy: Always
         ports:

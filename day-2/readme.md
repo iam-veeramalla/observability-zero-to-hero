@@ -78,6 +78,9 @@ eksctl create nodegroup --cluster=observability \
                         --appmesh-access \
                         --alb-ingress-access \
                         --node-private-networking
+
+# Update ./kube/config file
+aws eks update-kubeconfig --name observability
 ```
 
 ### 🧰 Step 2: Install kube-prometheus-stack
@@ -95,7 +98,7 @@ cd day-2
 
 helm install monitoring prometheus-community/kube-prometheus-stack \
 -n monitoring \
--f custom_kube_prometheus_stack.yml
+-f ./custom_kube_prometheus_stack.yml
 ```
 
 ### ✅ Step 4: Verify the Installation

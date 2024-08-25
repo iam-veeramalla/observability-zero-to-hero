@@ -15,14 +15,17 @@
 - 📤 **Exporters**: Prometheus uses exporters to collect metrics from different systems. These exporters expose metrics in a format that Prometheus can scrape and store.
     - **Node Exporter**: Collects system-level metrics from Linux/Unix systems.
     - **MySQL Exporter (For MySQL Database)**:  Collects metrics from a MySQL database.
-    - **ostgreSQL Exporter (For PostgreSQL Database)**: Collects metrics from a PostgreSQL database.
+    - **PostgreSQL Exporter (For PostgreSQL Database)**: Collects metrics from a PostgreSQL database.
 - 📊 **Custom Metrics**: You can instrument your application to expose custom metrics that are relevant to your specific use case. For example, you might track the number of user logins per minute.
 
 
 # 🎯 Project Objectives
 - 🛠️ **Implement Custom Metrics in Node.js Application**: Use the prom-client library to write and expose custom metrics in the Node.js application.
-- 🚨 **Set Up Alerts in Alertmanager**: Configure Alertmanager to send email notifications if a container crashes more than three times.
-- 📝 **Set Up Logging**: Implement logging on both application and cluster (node) logs for better observability.
+- 🚨 **Set Up Alerts in Alertmanager**: Configure Alertmanager to send email notifications if a container crashes more than two times.
+- 📝 **Set Up Logging**: Implement logging on both application and cluster (node) logs for better observability using EFK stack.
+
+# 🏠 Architecture
+![Project Architecture](images/architecture.gif)
 
 ## 1) Write Custom Metrics
 - Please take a look at `day-4/app-code/index.js` file to learn more about custom metrics. below is the brief overview
@@ -55,6 +58,8 @@ docker build -t <<NAME_OF_YOUR_REPO>>:<<TAG>> app-code/
 - Review the Kubernetes manifest files located in `day-4/kubernetes-manifest`.
 - Apply the Kubernetes manifest files to your cluster by running:
 ```bash
+kubectl create ns dev
+
 kubectl apply -k kubernetes-manifest/
 ```
 
