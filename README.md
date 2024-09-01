@@ -52,3 +52,14 @@ Welcome to the 5-Day Observability Tutorial Series! This repository contains the
   - Cleaning up the Kubernetes cluster and resources.
 - **Key Learning**:
   - Understand the importance of logging and how to set up
+
+### Day 6: Distributed Tracing with Jaeger
+- **Concepts Covered**:
+  - Introduction to Jaeger and its architecture for distributed tracing.
+  - Setting up Jaeger in a Kubernetes cluster using Helm.
+  - Instrumenting services using OpenTelemetry to enable tracing.
+  - Viewing and analyzing traces in the Jaeger UI.
+  - Cleaning up the environment after setting up Jaeger.
+- **Key Learning**:
+  - Gain insights into distributed tracing and how it helps in debugging and performance optimization.
+  - Learn how to set up and configure Jaeger for tracing in a microservices architecture.
