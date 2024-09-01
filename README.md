@@ -1,5 +1,5 @@
 
-# 📚 5-Day Observability Tutorial Series
+# 📚 7-Day Observability Tutorial Series
 
 Welcome to the 5-Day Observability Tutorial Series! This repository contains the code and detailed explanations for setting up and understanding observability in Kubernetes using Prometheus, Grafana, Elasticsearch, Fluentbit, and Kibana.
 
