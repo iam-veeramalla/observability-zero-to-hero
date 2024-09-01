@@ -22,13 +22,14 @@
 # 🎯 Project Objectives
 - 🛠️ **Implement Custom Metrics in Node.js Application**: Use the prom-client library to write and expose custom metrics in the Node.js application.
 - 🚨 **Set Up Alerts in Alertmanager**: Configure Alertmanager to send email notifications if a container crashes more than two times.
-- 📝 **Set Up Logging**: Implement logging on both application and cluster (node) logs for better observability using EFK stack.
+- 📝 **Set Up Logging**: Implement logging on both application and cluster (node) logs for better observability using EFK stack(Elasticsearch, FluentBit, Kibana).
+- 📸 **Implement Distributed Tracing for Node.js Application**: Enhance observability by instrumenting the Node.js application for distributed tracing using Jaeger. enabling better performance monitoring and troubleshooting of complex, multi-service architectures.
 
 # 🏠 Architecture
 ![Project Architecture](images/architecture.gif)
 
 ## 1) Write Custom Metrics
-- Please take a look at `day-4/app-code/index.js` file to learn more about custom metrics. below is the brief overview
+- Please take a look at `day-4/application/service-a/index.js` file to learn more about custom metrics. below is the brief overview
 - **Express Setup**: Initializes an Express application and sets up logging with Morgan.
 - **Logging with Pino**: Defines a custom logging function using Pino for structured logging.
 - **Prometheus Metrics with prom-client**: Integrates Prometheus for monitoring HTTP requests using the prom-client library:
@@ -45,13 +46,19 @@
 - `/crash`: Simulates a server crash by exiting the process.
 - `/example`: Tracks async task duration with a gauge.
 - `/metrics`: Exposes Prometheus metrics endpoint.
+- `/call-service-b`: To call service b & receive data from service b
 
 ## 2) dockerize & push it to the registry
-- To containerize the application and push it to your Docker registry, run the following commands:
+- To containerize the applications and push it to your Docker registry, run the following commands:
 ```bash
 cd day-4
 
-docker build -t <<NAME_OF_YOUR_REPO>>:<<TAG>> app-code/
+# Dockerize microservice - a
+docker build -t <<NAME_OF_YOUR_REPO>>:<<TAG>> application/service-a/
+
+# Dockerize microservice - b
+docker build -t <<NAME_OF_YOUR_REPO>>:<<TAG>> application/service-b/
+
 ```
 
 ## 3) Kubernetes manifest
@@ -70,9 +77,9 @@ kubectl apply -k kubernetes-manifest/
     - `/serverError`
     - `/notFound`
     - `/logs`
-    - `/crash`
     - `/example`
     - `/metrics`
+    - `/call-service-b`
 - Alternatively, you can run the automated script `test.sh`, which will automatically send random requests to the LoadBalancer and generate metrics:
 ```bash
 ./test.sh <<LOAD_BALANCER_DNS_NAME>>
@@ -82,7 +89,7 @@ kubectl apply -k kubernetes-manifest/
 - Review the Alertmanager configuration files located in `day-4/alerts-alertmanager-servicemonitor-manifest` but below is the brief overview
     - Before configuring Alertmanager, we need credentials to send emails. For this project, we are using Gmail, but any SMTP provider like AWS SES can be used. so please grab the credentials for that.
     - Open your Google account settings and search App password & create a new password & put the password in `day-4/alerts-alertmanager-servicemonitor-manifest/email-secret.yml`
-
+    - One last thing, please add your email id in the `day-4/alerts-alertmanager-servicemonitor-manifest/alertmanagerconfig.yml`
 - **HighCpuUsage**: Triggers a warning alert if the average CPU usage across instances exceeds 50% for more than 5 minutes.
 - **PodRestart**: Triggers a critical alert immediately if any pod restarts more than 2 times.
 - Apply the manifest files to your cluster by running:

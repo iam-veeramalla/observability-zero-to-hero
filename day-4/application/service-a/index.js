@@ -1,6 +1,10 @@
+// service-a/index.js
+require('dotenv').config();
+require('./tracing'); // Add this line to initialize tracing
 const express = require('express');
 const morgan = require('morgan');
 const pino = require('pino');
+const axios = require('axios');
 const promClient = require('prom-client');
 
 const app = express();
@@ -14,6 +18,10 @@ const logging = () => {
 }
 
 app.use(morgan('common'))
+
+const PORT = 3001;
+
+
 
 
 // Prometheus metrics
@@ -124,9 +132,16 @@ app.get('/metrics', async (req, res) => {
     res.end(await promClient.register.metrics());
 });
 
+// Calling to service-b
+app.get('/call-service-b', async (req, res) => {
+  try {
+    const response = await axios.get(`${process.env.SERVICE_B_URI}/hello`);
+    res.send(`<h1 style="font-size: 100px">Service B says: ${response.data}<h1>`);
+  } catch (error) {
+    res.status(500).send('Error communicating with Service B');
+  }
+});
 
-const PORT = 3000;
 app.listen(PORT, () => {
-    console.log(`listening on port ${PORT}`)
-})
-
+  console.log(`Service A is running on port ${PORT}`);
+});

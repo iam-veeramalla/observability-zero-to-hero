@@ -440,7 +440,7 @@ config:
         Host elasticsearch-master
         Port 9200
         HTTP_User elastic
-        HTTP_Passwd ewHnMzGq0Y8kcoWV
+        HTTP_Passwd cbTQj1qxRIPNF5uc
         tls On
         tls.verify Off
         Logstash_Format On
@@ -455,7 +455,7 @@ config:
         Host elasticsearch-master
         Port 9200
         HTTP_User elastic
-        HTTP_Passwd ewHnMzGq0Y8kcoWV
+        HTTP_Passwd cbTQj1qxRIPNF5uc
         tls On
         tls.verify Off
         Logstash_Format On

@@ -3,15 +3,15 @@ kind: Service
 metadata:
   labels:
     job: node-api
-    app: prometheus-service
-  name: prometheus-service
+    app: a-service
+  name: a-service
 spec:
   ports:
-  - name: prometheus-service-port
+  - name: a-service-port
     port: 80
     protocol: TCP
-    targetPort: 3000
+    targetPort: 3001
   selector:
-    app: prometheus-deployment
+    app: service-a-deployment
   type: LoadBalancer
 

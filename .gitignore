@@ -1,3 +1,5 @@
 **/*.pptx
 
 **/**/node_modules
+
+**/**/*.pem

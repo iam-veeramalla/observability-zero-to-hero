@@ -14,6 +14,9 @@ ENDPOINTS=(
   "/logs"
   "/example"
   "/metrics"
+  "/call-service-b"
+  "/call-service-b"
+  "/call-service-b"
 )
 
 # Function to make a random request to one of the endpoints
