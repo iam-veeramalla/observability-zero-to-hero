@@ -2,19 +2,26 @@
 
 ## Add helm repo
 
-`helm repo add prometheus-community https://prometheus-community.github.io/helm-charts`
+```shell
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+```
 
 ## Update helm repo
 
-`helm repo update`
+```shell
+helm repo update
+```
 
-## Install helm 
+## Install helm
 
-`helm install prometheus prometheus-community/prometheus`
+```shell
+helm install prometheus prometheus-community/prometheus
+```
 
 ## Expose Prometheus Service
 
 This is required to access prometheus-server using your browser.
 
-`kubectl expose service prometheus-server --type=NodePort --target-port=9090 --name=prometheus-server-ext`
-
+```shell
+kubectl expose service prometheus-server --type=NodePort --target-port=9090 --name=prometheus-server-ext
+```
