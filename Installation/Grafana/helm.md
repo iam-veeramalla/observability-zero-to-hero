@@ -15,3 +15,6 @@
 ## Expose Grafana Service
 
 `kubectl expose service grafana — type=NodePort — target-port=3000 — name=grafana-ext`
+
+Updating the above command to the correct one as below
+kubectl expose service grafana --type=NodePort --target-port=3000 --name=grafana-ext
