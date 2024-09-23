@@ -63,3 +63,13 @@ Welcome to the 5-Day Observability Tutorial Series! This repository contains the
 - **Key Learning**:
   - Gain insights into distributed tracing and how it helps in debugging and performance optimization.
   - Learn how to set up and configure Jaeger for tracing in a microservices architecture.
+ 
+### Day 7: eBPF
+- **Concepts Covered**:
+  - Introduction to eBPF.
+  - How eBPF is revolutionizing the Observability space ?
+  - eBPG deep dive
+  - Demonstration of implementing Metics, Logging and Tracing using eBPF.
+- **Key Learning**:
+  - Gain insights into the benefits of adopting eBPF in your observability stack.
+  - Learn how to set up and configure groundcover which is based on eBPF.
