@@ -63,8 +63,20 @@ Welcome to the 7-Day Observability Tutorial Series! This repository contains the
 - **Key Learning**:
   - Gain insights into distributed tracing and how it helps in debugging and performance optimization.
   - Learn how to set up and configure Jaeger for tracing in a microservices architecture.
- 
-### Day 7: eBPF
+
+### Day 7: OpenTelemetry – Setting Up Unified Observability
+- **Concepts Covered**:
+  - Introduction to OpenTelemetry, a unified framework for observability.
+  - Understanding how OpenTelemetry integrates tracing, metrics, and logging.
+  - Comparison of OpenTelemetry with prior observability tools like Jaeger, Prometheus
+  - Supported programming languages and multi-language support in OpenTelemetry.
+  - Step-by-step setup of OpenTelemetry in Kubernetes.
+- **Key Learning**:
+  - Learn how OpenTelemetry simplifies the process of collecting and exporting telemetry data.
+  - Understand the benefits of a unified observability approach using OpenTelemetry.
+  - Gain hands-on experience with setting up OpenTelemetry Collector, Prometheus, Jaeger, and Elasticsearch to monitor a Golang microservice application.
+
+### Day 8: eBPF
 - **Concepts Covered**:
   - Introduction to eBPF.
   - How eBPF is revolutionizing the Observability space ?
