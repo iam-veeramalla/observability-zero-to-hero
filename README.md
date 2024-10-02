@@ -27,22 +27,22 @@ Welcome to the 7-Day Observability Tutorial Series! This repository contains the
 
 ### Day 3: Metrics and PromQL in Prometheus
 - **Concepts Covered**:
-  - Understanding different types of metrics in Prometheus: Counter, Gauge, Histogram, and Summary.
   - Introduction to PromQL and basic querying techniques.
   - Aggregation and functions in PromQL to analyze metrics data.
 - **Key Learning**:
   - Master the Prometheus Query Language (PromQL) for querying and analyzing metrics.
-  - Understand how to work with different types of metrics in Prometheus.
 
 ### Day 4: Instrumentation and Custom Metrics
 - **Concepts Covered**:
   - Instrumentation for adding monitoring capabilities to applications.
+  - Understanding different types of metrics in Prometheus: Counter, Gauge, Histogram, and Summary.
   - Writing custom metrics in a Node.js application using the `prom-client` library.
   - Dockerizing the application and deploying it on Kubernetes.
   - Setting up Alertmanager for alerting based on custom metrics.
 - **Key Learning**:
   - Learn how to instrument applications to expose custom metrics.
   - Configure alerts in Alertmanager to monitor application performance.
+  - Understand how to work with different types of metrics in Prometheus.
 
 ### Day 5: Logging with EFK Stack
 - **Concepts Covered**:
