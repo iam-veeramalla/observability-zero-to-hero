@@ -76,12 +76,3 @@ Welcome to the 7-Day Observability Tutorial Series! This repository contains the
   - Understand the benefits of a unified observability approach using OpenTelemetry.
   - Gain hands-on experience with setting up OpenTelemetry Collector, Prometheus, Jaeger, and Elasticsearch to monitor a Golang microservice application.
 
-### Day 8: eBPF
-- **Concepts Covered**:
-  - Introduction to eBPF.
-  - How eBPF is revolutionizing the Observability space ?
-  - eBPG deep dive
-  - Demonstration of implementing Metics, Logging and Tracing using eBPF.
-- **Key Learning**:
-  - Gain insights into the benefits of adopting eBPF in your observability stack.
-  - Learn how to set up and configure groundcover which is based on eBPF.
