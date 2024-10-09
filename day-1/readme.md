@@ -12,7 +12,7 @@
 
 ## 🤔 Why Monitoring?
 - Monitoring helps us keep an eye on our systems to ensure they are working properly.
-- Perpose:  maintaining the **health, performance, and security** of IT environments.
+- Purpose:  maintaining the **health, performance, and security** of IT environments.
 - It enables early detection of issues, ensuring that they can be addressed before causing significant downtime or data loss.
 
 - We use monitoring to:
@@ -46,13 +46,13 @@
 
 ## 🔭 Does Observability Cover Monitoring?
 - Yes!! Monitoring is subset of Observability
-- Observability is a broader concept that includes monitoring as one of its components.
-- monitoring focuses on tracking specific metrics and alerting on predefined conditions
-- observability provides a comprehensive understanding of the system by collecting and analyzing a wider range of data, including **logs, metrics, and traces**.
+- Observability encompasses monitoring as a key component.
+- Monitoring focuses on tracking specific metrics and alerting on predefined conditions
+- Observability provides a comprehensive understanding of the system by collecting and analyzing a wider range of data, including **logs, metrics, and traces**.
 
 ## 🖥️ What Can Be Monitored?
 - Infrastructure: CPU usage, memory usage, disk I/O, network traffic.
-- Applications: Response times, error rates, throughput.
+- Applications: Response Times, Error Rates, Throughput.
 - Databases: Query performance, connection pool usage, transaction rates.
 - Network: Latency, packet loss, bandwidth usage.
 - Security: Unauthorized access attempts, vulnerability scans, firewall logs.
@@ -80,6 +80,26 @@
     - Integration: Necessitates the integration of multiple observability tools to get a complete picture of the system.
 
 ## ⚒️ What are the Tools Available?
-- **Monitoring Tools**: Prometheus, Grafana, Nagios, Zabbix, PRTG.
-- **Observability Tools**: ELK Stack (Elasticsearch, Logstash, Kibana), EFK Stack (Elasticsearch, FluentBit, Kibana) Splunk, Jaeger, Zipkin, New Relic, Dynatrace, Datadog.
+### Monitoring Tools
+- **Open-Source Tools:**
+  - **Prometheus:** A popular open-source tool for monitoring and alerting, especially suited for containerized environments.
+  - **Grafana:** Often used with Prometheus, this tool provides visualization for monitoring data.
+  - **Nagios:** A well-established tool that offers basic monitoring of systems, networks, and infrastructure.
+  - **Zabbix:** Open-source monitoring software for networks and applications.
+
+- **Enterprise Tools:**
+  - **PRTG Network Monitor:** A comprehensive tool for monitoring various aspects of IT infrastructure, suited for larger enterprises.
+
+### Observability Tools
+- **Open-Source Tools:**
+  - **ELK Stack (Elasticsearch, Logstash, Kibana):** A widely-used stack for log management, visualization, and analysis.
+  - **EFK Stack (Elasticsearch, FluentBit, Kibana):** Similar to the ELK Stack, but with FluentBit as an alternative for log collection.
+  - **Jaeger:** An open-source tool for distributed tracing and performance monitoring.
+  - **Zipkin:** Another open-source distributed tracing system.
+
+- **Enterprise Tools:**
+  - **Splunk:** Provides log management and analytics with powerful data indexing and search capabilities.
+  - **New Relic:** An enterprise observability platform offering detailed insights into application performance.
+  - **Dynatrace:** A tool that uses artificial intelligence for monitoring, providing in-depth observability for complex environments.
+  - **Datadog:** A monitoring and observability platform that combines log management, metrics, and tracing in a single interface.
 
