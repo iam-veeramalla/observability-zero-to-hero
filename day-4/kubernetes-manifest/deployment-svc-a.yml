@@ -16,7 +16,7 @@ spec:
         app: service-a-deployment
     spec:
       containers:
-      - image: <<IMAGE_NAME_ID>>:<<TAG>>
+      - image: abhishekf5/demoservice-a:v
         name: service-a
         imagePullPolicy: Always
         ports:

@@ -75,10 +75,15 @@
 cd day-4
 
 # Dockerize microservice - a
-docker build -t <<NAME_OF_YOUR_REPO>>:<<TAG>> application/service-a/
+docker build -t <<NAME_OF_YOUR_REPO>>:<<TAG>> application/service-a/ 
+# or use abhishekf5/demoservice-a:v
 
 # Dockerize microservice - b
-docker build -t <<NAME_OF_YOUR_REPO>>:<<TAG>> application/service-b/
+docker build -t <<NAME_OF_YOUR_REPO>>:<<TAG>> application/service-b/ 
+
+or use the pre-built images
+- abhishekf5/demoservice-a:v
+- abhishekf5/demoservice-b:v
 
 ```
 
