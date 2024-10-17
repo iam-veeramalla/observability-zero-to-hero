@@ -95,6 +95,7 @@ helm install kibana --set service.type=LoadBalancer elastic/kibana -n logging
 ### 8) Install Fluentbit with Custom Values/Configurations
 - 👉 **Note**: Please update the `HTTP_Passwd` field in the `fluentbit-values.yml` file with the password retrieved earlier in step 6: (i.e NJyO47UqeYBsoaEU)"
 ```bash
+helm repo add fluent https://fluent.github.io/helm-charts
 helm install fluent-bit fluent/fluent-bit -f fluentbit-values.yaml -n logging
 ```
 
