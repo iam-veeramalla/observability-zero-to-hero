@@ -60,10 +60,10 @@ Monitoring is the process of keeping an eye on these metrics over time to unders
 ## 📦 Step 1: Create EKS Cluster
 
 ### Prerequisites
-- Download and Install AWS Cli - Please Refer [this]("https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html") link.
-- Setup and configure AWS CLI using the `aws configure` command.
-- Install and configure eksctl using the steps mentioned [here]("https://eksctl.io/installation/").
-- Install and configure kubectl as mentioned [here]("https://kubernetes.io/docs/tasks/tools/").
+* Download and Install [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html).
+* Setup and configure AWS CLI using the `aws configure` command.
+* Install and configure [eksctl](https://docs.aws.amazon.com/eks/latest/userguide/eksctl.html) using the steps mentioned here.
+* Install and configure [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/) as mentioned here.
 
 
 ```bash
@@ -137,6 +137,11 @@ kubectl port-forward service/alertmanager-operated -n monitoring 9093:9093
 ```
 
 ### 🧼 Step 5: Clean UP
+- **Confirm all resources are correctly deleted**:
+```bash
+kubectl get all -n monitoring
+```
+Note that uninstalling the Helm chart may leave persistent volume claims (PVCs) intact, which can be manually deleted if not needed.
 - **Uninstall helm chart**:
 ```bash
 helm uninstall monitoring --namespace monitoring
