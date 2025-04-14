@@ -1,0 +1,5 @@
+vpcCidr: "10.1.0.0/16"
+subnetCidr1: "10.1.1.0/24"
+subnetCidr2: "10.1.2.0/24"
+desiredCapacity: 3
+region: "us-west-2"

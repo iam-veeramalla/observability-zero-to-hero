@@ -1,0 +1,90 @@
+name: Review and Approve Deployment
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  preview-dev:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Pulumi for dev
+        working-directory: ./day-2
+        uses: pulumi/actions@v3
+        with:
+          stack-name: dev
+
+      - name: Preview dev environment
+        working-directory: ./day-2
+        run: pulumi preview
+
+  approve-dev:
+    runs-on: ubuntu-latest
+    needs: preview-dev
+    steps:
+      - name: Approval Gate for dev
+        run: echo "Waiting for approval to deploy dev environment"
+        # Removed the manual trigger condition for wider usability
+
+  deploy-dev:
+    runs-on: ubuntu-latest
+    needs: approve-dev
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Pulumi and deploy dev
+        working-directory: ./day-2
+        uses: pulumi/actions@v3
+        with:
+          stack-name: dev
+
+      - name: Deploy dev environment
+        working-directory: ./day-2
+        run: pulumi up --yes
+
+  preview-tst:
+    runs-on: ubuntu-latest
+    needs: deploy-dev
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Pulumi for tst
+        working-directory: ./day-2
+        uses: pulumi/actions@v3
+        with:
+          stack-name: tst
+
+      - name: Preview tst environment
+        working-directory: ./day-2
+        run: pulumi preview
+
+  approve-tst:
+    runs-on: ubuntu-latest
+    needs: preview-tst
+    steps:
+      - name: Approval Gate for tst
+        run: echo "Waiting for approval to deploy tst environment"
+        # Removed the manual trigger condition for wider usability
+
+  deploy-tst:
+    runs-on: ubuntu-latest
+    needs: approve-tst
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Pulumi and deploy tst
+        working-directory: ./day-2
+        uses: pulumi/actions@v3
+        with:
+          stack-name: tst
+
+      - name: Deploy tst environment
+        working-directory: ./day-2
+        run: pulumi up --yes
