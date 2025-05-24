@@ -115,6 +115,21 @@ helm install monitoring prometheus-community/kube-prometheus-stack \
 -n monitoring \
 -f ./custom_kube_prometheus_stack.yml
 ```
+If you are seeing below error while installing prometheus
+```
+Prometheus.monitoring.coreos.com "monitoring-kube-prometheus-prometheus" is invalid: spec.maximumStartupDurationSeconds: Invalid value: 0: spec.maximumStartupDurationSeconds in body should be greater than or equal to 60
+```
+Try the below steps
+```
+helm show values prometheus-community/kube-prometheus-stack  > values.yaml
+
+# Edit the file values.yaml and update the value of maximumStartupDurationSeconds to 60 , and save it
+
+Then execute the below command 
+
+helm upgrade monitoring prometheus-community/kube-prometheus-stack -n monitoring -f ./custom_kube_prometheus_stack.yml -f values.yaml
+
+```
 
 ### ✅ Step 4: Verify the Installation
 ```bash
