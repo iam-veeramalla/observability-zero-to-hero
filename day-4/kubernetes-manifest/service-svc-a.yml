@@ -13,5 +13,8 @@ spec:
     targetPort: 3001
   selector:
     app: service-a-deployment
-  type: LoadBalancer
+  type: ClusterIP
+  ports:
+  - port: 80
+    targetPort: 80
 
