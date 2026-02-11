@@ -13,4 +13,4 @@ spec:
     - name: a-service-port
       port: 80
       protocol: TCP
-      targetPort: 3001
+      targetPort: 3001 
