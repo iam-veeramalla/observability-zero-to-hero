@@ -6,12 +6,11 @@ metadata:
     app: a-service
   name: a-service
 spec:
-  ports:
-  - name: a-service-port
-    port: 80
-    protocol: TCP
-    targetPort: 3001
+  type: ClusterIP
   selector:
     app: service-a-deployment
-  type: LoadBalancer
-
+  ports:
+    - name: a-service-port
+      port: 80
+      protocol: TCP
+      targetPort: 3001 
