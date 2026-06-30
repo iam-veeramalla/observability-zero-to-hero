@@ -1,0 +1,7 @@
+Use this VIdeo Tutorial Link for easy installation 
+https://www.youtube.com/watch?v=EeiYpnBHnhY&t=2147s
+
+Reminder: While installing these tools use a separate Namespace called Monitoring
+
+Use the below Dashboard ID to get a better visualization
+16734 - Detailed metrics of each and every namespace and node and pod in the Aks cluster
