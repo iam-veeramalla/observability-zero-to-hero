@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    job: node-api
+    app: b-service
+  name: b-service
+spec:
+  ports:
+  - name: b-service-port
+    port: 80
+    protocol: TCP
+    targetPort: 3002
+  selector:
+    app: service-b-deployment
+

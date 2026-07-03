@@ -1,0 +1,29 @@
+# log-generator-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: log-generator
+  labels:
+    app: log-generator
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: log-generator
+  template:
+    metadata:
+      labels:
+        app: log-generator
+    spec:
+      containers:
+        - name: log-generator
+          image: busybox
+          command: ["/bin/sh", "-c"]
+          args:
+            - |
+              while true; do
+                echo "$(date) INFO: Application started";
+                echo "$(date) DEBUG: Debugging app logic";
+                echo "$(date) ERROR: An error occurred!";
+                sleep 5;
+              done

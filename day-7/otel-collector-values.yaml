@@ -1,0 +1,117 @@
+# otel-collector-values.yaml
+
+mode: "deployment"
+
+config:
+  receivers:
+    otlp:
+      protocols:
+        http:
+          endpoint: "0.0.0.0:4318"
+        grpc:
+          endpoint: "0.0.0.0:4317"
+
+  processors:
+    batch: {}
+
+  exporters:
+    prometheus:
+      endpoint: "0.0.0.0:8889"
+
+    # jaeger:
+    #   endpoint: "jaeger-collector.olly:14250"  # Jaeger gRPC endpoint
+    #   insecure: true
+
+    otlp:
+      endpoint: "jaeger-collector.olly:4317"  # Update as per your Jaeger service
+      tls:
+        insecure: true
+    debug:
+      verbosity: detailed
+  service:
+    pipelines:
+      metrics:
+        receivers: [otlp]
+        processors: [batch]
+        exporters: [prometheus]
+      traces:
+        receivers: [otlp]
+        processors: [batch]
+        exporters: [otlp]
+
+image:
+  repository: "otel/opentelemetry-collector-contrib"  # Use contrib image
+  tag: "latest"  # Specify the desired tag
+  pullPolicy: "IfNotPresent"
+
+command:
+  name: "otelcol-contrib"  # Optional: Update command name if necessary
+
+service:
+  type: ClusterIP
+
+# Uncomment and configure if using ServiceMonitor
+# serviceMonitor:
+#   enabled: true
+#   namespace: olly
+#   selector:
+#     matchLabels:
+#       app: otel-collector
+#   endpoints:
+#     - port: prometheus
+#       interval: 2s
+
+resources:
+  requests:
+    memory: "256Mi"
+    cpu: "250m"
+  limits:
+    memory: "512Mi"
+    cpu: "500m"
+
+ports:
+  prometheus:
+    enabled: true
+    containerPort: 8889
+    servicePort: 8889
+    hostPort: 8889
+    protocol: TCP
+    appProtocol: TCP
+  otlp:
+    enabled: true
+    containerPort: 4317
+    servicePort: 4317
+    hostPort: 4317
+    protocol: TCP
+    # nodePort: 30317
+    appProtocol: grpc
+  otlp-http:
+    enabled: true
+    containerPort: 4318
+    servicePort: 4318
+    hostPort: 4318
+    protocol: TCP
+  jaeger-compact:
+    enabled: true
+    containerPort: 6831
+    servicePort: 6831
+    hostPort: 6831
+    protocol: UDP
+  jaeger-thrift:
+    enabled: true
+    containerPort: 14268
+    servicePort: 14268
+    hostPort: 14268
+    protocol: TCP
+  jaeger-grpc:
+    enabled: true
+    containerPort: 14250
+    servicePort: 14250
+    hostPort: 14250
+    protocol: TCP
+  zipkin:
+    enabled: true
+    containerPort: 9411
+    servicePort: 9411
+    hostPort: 9411
+    protocol: TCP

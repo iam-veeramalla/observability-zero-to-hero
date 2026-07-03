@@ -1,0 +1,71 @@
+storage:
+  type: elasticsearch
+  elasticsearch:
+    host: elasticsearch-master.olly.svc  # Replace with your Elasticsearch service DNS
+    port: 9200
+    scheme: https
+    user: elastic  # Replace with the actual username if necessary
+    password: F2Dm1tKzDQDYnNXR  # Replace with the actual password
+    tls:
+      enabled: true
+      ca: /tls/ca-cert.pem  # Path where the CA cert is mounted
+
+provisionDataStore:
+  cassandra: false
+  elasticsearch: false
+
+query:
+  cmdlineParams:
+    es.tls.ca: "/tls/ca-cert.pem"
+  extraConfigmapMounts:
+    - name: jaeger-tls
+      mountPath: /tls
+      subPath: ""
+      configMap: jaeger-tls
+      readOnly: true
+
+collector:
+  image:
+    repository: jaegertracing/jaeger-collector
+    tag: latest
+
+  # Configure the Collector service to expose OTLP ports
+  service:
+    type: ClusterIP
+    otlp:
+      grpc:
+        name: otlp-grpc
+        # enabled: true
+        port: 4317  # gRPC OTLP port
+      http:
+        name: otlp-http
+        # enabled: true
+        port: 4318  # HTTP OTLP port
+
+
+
+  cmdlineParams:
+    es.tls.ca: "/tls/ca-cert.pem"
+    collector.otlp.grpc.host-port: "0.0.0.0:4317"  # Enable OTLP gRPC receiver on port 4317
+    collector.otlp.http.host-port: "0.0.0.0:4318"  # Enable OTLP HTTP receiver on port 4318
+
+  extraConfigmapMounts:
+    - name: jaeger-tls
+      mountPath: /tls
+      subPath: ""
+      configMap: jaeger-tls
+      readOnly: true
+
+
+  # Define the service ports for OTLP receivers
+  ports:
+    otlp-grpc:
+      enabled: true
+      containerPort: 4317
+      servicePort: 4317
+      protocol: TCP
+    otlp-http:
+      enabled: true
+      containerPort: 4318
+      servicePort: 4318
+      protocol: TCP

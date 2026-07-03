@@ -1,0 +1,35 @@
+storage:
+  type: elasticsearch
+  elasticsearch:
+    host: elasticsearch-master.logging.svc  # Replace with your Elasticsearch service DNS
+    port: 9200
+    scheme: https
+    user: elastic  # Replace with the actual username if necessary
+    password: cbTQj1qxRIPNF5uc  # Replace with the actual password
+    tls:
+      enabled: true
+      ca: /tls/ca-cert.pem  # Path where the CA cert is mounted
+
+provisionDataStore:
+  cassandra: false
+  elasticsearch: false
+
+query:
+  cmdlineParams:
+    es.tls.ca: "/tls/ca-cert.pem"
+  extraConfigmapMounts:
+    - name: jaeger-tls
+      mountPath: /tls
+      subPath: ""
+      configMap: jaeger-tls
+      readOnly: true
+
+collector:
+  cmdlineParams:
+    es.tls.ca: "/tls/ca-cert.pem"
+  extraConfigmapMounts:
+    - name: jaeger-tls
+      mountPath: /tls
+      subPath: ""
+      configMap: jaeger-tls
+      readOnly: true

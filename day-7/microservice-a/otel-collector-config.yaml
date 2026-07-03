@@ -1,0 +1,37 @@
+# 👉 Note: this file is for to test in local environment - nothing to do with k8s
+
+
+# receivers:
+#   otlp:
+#     protocols:
+#       http:
+#       grpc:
+
+receivers:
+  otlp:
+    protocols:
+      http:
+        endpoint: "0.0.0.0:4318"
+      grpc:
+        endpoint: "0.0.0.0:4317"
+
+processors:
+  batch:
+
+exporters:
+  prometheus:
+    endpoint: "0.0.0.0:8889"
+  otlp:
+    endpoint: "jaeger:4317"  # Send data to Jaeger over gRPC
+    tls:
+      insecure: true
+service:
+  pipelines:
+    metrics:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [prometheus]
+    traces:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [otlp]

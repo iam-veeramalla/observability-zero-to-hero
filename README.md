@@ -1,75 +1,80 @@
 # Prometheus-Grafana-Zero-to-Hero
 (image.png)
 
-This is a **Work-In-Progress** Repo for learning how monitor your kubernetes clusters using prometheus and visualize using grafana.
+# 📚 7-Day Observability Tutorial Series
 
-Both Prometheus and Grafana have a very good documentation 
+Welcome to the 7-Day Observability Tutorial Series! This repository contains the code and detailed explanations for setting up and understanding observability in Kubernetes using Prometheus, Grafana, Elasticsearch Fluentbit, Kibana, Jaeger, groundcover(eBPF), opentelemetry e.t.c.,.
 
-[Prometheus Docs]("https://prometheus.io/docs/introduction/overview/")
+## 📅 Overview of Each Day
 
-[Grafana Docs]("https://grafana.com/docs/grafana/latest/")
+### Day 1: Introduction to Observability
+- **Concepts Covered**:
+  - Introduction to Observability, Monitoring, Logging, and Tracing.
+  - The difference between Monitoring and Observability.
+  - Tools available for Monitoring and Observability.
+  - Comparison between monitoring and observing in Bare-Metal Servers vs. Kubernetes.
+- **Key Learning**:
+  - Understand the fundamental concepts of observability.
+  - Learn why monitoring and observability are crucial in modern IT environments.
 
-## Pre-Requisite
+### Day 2: Prometheus - Setting Up Monitoring
+- **Concepts Covered**:
+  - Introduction to Prometheus and its architecture.
+  - Setup and configuration of Prometheus in an EKS cluster.
+  - Installation of kube-prometheus-stack with Helm and integrating it with Grafana.
+  - Basic queries and setup for monitoring with Prometheus and Grafana.
+- **Key Learning**:
+  - Get hands-on experience with Prometheus and Grafana.
+  - Learn to install and configure Prometheus on Kubernetes.
 
-- Kubernetes Cluster (can be minikube)
-- Helm 
+### Day 3: Metrics and PromQL in Prometheus
+- **Concepts Covered**:
+  - Introduction to PromQL and basic querying techniques.
+  - Aggregation and functions in PromQL to analyze metrics data.
+- **Key Learning**:
+  - Master the Prometheus Query Language (PromQL) for querying and analyzing metrics.
 
-If you don't have them installed. Follow the below links:
+### Day 4: Instrumentation and Custom Metrics
+- **Concepts Covered**:
+  - Instrumentation for adding monitoring capabilities to applications.
+  - Understanding different types of metrics in Prometheus: Counter, Gauge, Histogram, and Summary.
+  - Writing custom metrics in a Node.js application using the `prom-client` library.
+  - Dockerizing the application and deploying it on Kubernetes.
+  - Setting up Alertmanager for alerting based on custom metrics.
+- **Key Learning**:
+  - Learn how to instrument applications to expose custom metrics.
+  - Configure alerts in Alertmanager to monitor application performance.
+  - Understand how to work with different types of metrics in Prometheus.
 
-[Install Minikube]("https://minikube.sigs.k8s.io/docs/start/")
+### Day 5: Logging with EFK Stack
+- **Concepts Covered**:
+  - Introduction to logging in distributed systems and Kubernetes.
+  - Setting up the EFK stack (Elasticsearch, Fluentbit, Kibana) on Kubernetes.
+  - Detailed setup and configuration for collecting and visualizing logs.
+  - Cleaning up the Kubernetes cluster and resources.
+- **Key Learning**:
+  - Understand the importance of logging and how to set up
 
-[Install Helm]("https://helm.sh/docs/intro/install/")
+### Day 6: Distributed Tracing with Jaeger
+- **Concepts Covered**:
+  - Introduction to Jaeger and its architecture for distributed tracing.
+  - Setting up Jaeger in a Kubernetes cluster using Helm.
+  - Instrumenting services using OpenTelemetry to enable tracing.
+  - Viewing and analyzing traces in the Jaeger UI.
+  - Cleaning up the environment after setting up Jaeger.
+- **Key Learning**:
+  - Gain insights into distributed tracing and how it helps in debugging and performance optimization.
+  - Learn how to set up and configure Jaeger for tracing in a microservices architecture.
 
-<br></br>
-
-## It all starts with Monitoring 
-
-Monitoring your Kubernetes cluster is essential for ensuring the health and performance of your applications and infrastructure. Here are some reasons why monitoring your Kubernetes cluster is important:
-
-- Identify issues and troubleshoot: By monitoring your Kubernetes cluster, you can quickly identify issues such as application crashes, resource bottlenecks, and network problems. With real-time monitoring, you can troubleshoot issues before they escalate and impact your users.
-
-- Optimize performance and capacity: Monitoring allows you to track the performance of your applications and infrastructure over time, and identify opportunities to optimize performance and capacity. By understanding usage patterns and resource consumption, you can make informed decisions about scaling your infrastructure and improving the efficiency of your applications.
-
-- Ensure high availability: Kubernetes is designed to provide high availability for your applications, but this requires careful monitoring and management. By monitoring your cluster and setting up alerts, you can ensure that your applications remain available even in the event of failures or unexpected events.
-
-- Security and compliance: Monitoring your Kubernetes cluster can help you identify potential security risks and ensure compliance with regulations and policies. By tracking access logs and other security-related metrics, you can quickly detect and respond to potential security threats.
-
-<br></br>
-
-## Using Prometheus for monitoring
-
-Prometheus is an open-source monitoring and alerting system that helps you collect and store metrics about your software systems and infrastructure, and analyze that data to gain insights into their health and performance. It provides a powerful query language, a flexible data model, and a range of integrations with other tools and systems. With Prometheus, you can easily monitor metrics such as CPU usage, memory usage, network traffic, and application-specific metrics, and use that data to troubleshoot issues, optimize performance, and create alerts to notify you when things go wrong.
-
-<br></br>
-
-## Why Prometheus over other monitoring tools ?
-
-Prometheus is a popular choice for Kubernetes monitoring for several reasons:
-
-- Open-source: Prometheus is an open-source project that is free to use and has a large community of contributors. This means that you can benefit from ongoing development, bug fixes, and feature enhancements without paying for a commercial monitoring solution.
-
-- Native Kubernetes support: Prometheus is designed to work seamlessly with Kubernetes, making it easy to deploy and integrate with your Kubernetes environment. It provides pre-configured Kubernetes dashboards and supports auto-discovery of Kubernetes services and pods.
-
-- Powerful query language: Prometheus provides a powerful query language that allows you to easily retrieve and analyze metrics data. This allows you to create custom dashboards and alerts, and to troubleshoot issues more easily.
-
-- Scalability: Prometheus is designed to be highly scalable, allowing you to monitor large and complex Kubernetes environments with ease. It supports multi-node architectures and can handle large volumes of data without significant performance degradation.
-
-- Integrations: Prometheus integrates with a wide range of other tools and systems, including Grafana for visualization, Alertmanager for alerting, and Kubernetes API server for metadata discovery.
-
-<br></br>
-
-## Prometheus Architecture
-
-<br></br>
-![Alt text](https://prometheus.io/assets/architecture.png)
-
-<br></br>
-
-## What is Grafana ?
-
-Grafana is a popular open-source data visualization and analytics platform that allows you to create custom dashboards and visualizations based on a variety of data sources. Grafana is often used for monitoring and analyzing metrics and logs in real-time, making it an ideal tool for monitoring systems and applications, including Kubernetes environments.
-
-Grafana supports a wide range of data sources, including databases, time-series databases, and other data storage systems. It provides a powerful query language that allows you to retrieve and analyze data from these sources, and to create custom dashboards and alerts based on that data.
-
-In addition to its powerful data visualization and analysis capabilities, Grafana is also highly extensible. It supports a wide range of plugins and integrations, including integrations with popular monitoring and logging tools like Prometheus, Elasticsearch, and InfluxDB.
+### Day 7: OpenTelemetry – Setting Up Unified Observability
+- **Concepts Covered**:
+  - Introduction to OpenTelemetry, a unified framework for observability.
+  - Understanding how OpenTelemetry integrates tracing, metrics, and logging.
+  - Comparison of OpenTelemetry with prior observability tools like Jaeger, Prometheus
+  - Supported programming languages and multi-language support in OpenTelemetry.
+  - Step-by-step setup of OpenTelemetry in Kubernetes.
+- **Key Learning**:
+  - Learn how OpenTelemetry simplifies the process of collecting and exporting telemetry data.
+  - Understand the benefits of a unified observability approach using OpenTelemetry.
+  - Gain hands-on experience with setting up OpenTelemetry Collector, Prometheus, Jaeger, and Elasticsearch to monitor a Golang microservice application.
 

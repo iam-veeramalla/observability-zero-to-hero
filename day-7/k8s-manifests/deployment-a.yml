@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: go-service-a-deployment
+    # run: go-service-a-deployment
+  name: go-service-a-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: go-service-a-deployment
+  template:
+    metadata:
+      labels:
+        app: go-service-a-deployment
+    spec:
+      containers:
+      # - image: ankitjodhani/golang-svc-a:latest
+      - image: <<IMAGE_NAME_ID>>:<<TAG>>
+        name: service-a
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+        env:
+        - name: OTEL_COLLECTOR_ENDPOINT
+          value: "otel-collector-opentelemetry-collector.olly:4318"
+        - name: SVC_B_URI
+          value: "http://b-service.dev"
+        - name: PORT
+          value: "80"

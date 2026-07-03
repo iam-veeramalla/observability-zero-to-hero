@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    job: go-api
+    app: b-service
+  name: b-service
+  annotations:
+    prometheus.io/scrape: "true"
+    prometheus.io/port: "80"
+    prometheus.io/path: "/metrics"
+
+spec:
+  ports:
+  - name: b-service-port
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: go-service-b-deployment
+  type: LoadBalancer
+

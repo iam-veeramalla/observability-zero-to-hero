@@ -1,0 +1,19 @@
+serverFiles:
+  prometheus.yml:
+      scrape_configs:
+      - job_name: otel-collector
+        static_configs:
+          - targets:
+            - otel-collector-opentelemetry-collector.olly:8889
+
+alertmanager:
+  enabled: false
+
+prometheus-pushgateway:
+  enabled: false
+
+kube-state-metrics:
+  enabled: false
+
+prometheus-node-exporter:
+  enabled: false

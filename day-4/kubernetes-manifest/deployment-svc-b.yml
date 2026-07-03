@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: service-b-deployment
+    # run: service-b-deployment
+  name: service-b-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: service-b-deployment
+  template:
+    metadata:
+      labels:
+        app: service-b-deployment
+    spec:
+      containers:
+      - image: abhishekf5/demoservice-a:v
+        name: service-b
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 3002
+        env:
+        - name: OTEL_EXPORTER_JAEGER_ENDPOINT
+          value: "http://jaeger-collector.tracing:14268/api/traces"

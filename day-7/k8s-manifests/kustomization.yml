@@ -1,0 +1,9 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: dev
+resources:
+  - namespace.yml
+  - deployment-a.yml
+  - deployment-b.yml
+  - svc-a.yml
+  - svc-b.yml

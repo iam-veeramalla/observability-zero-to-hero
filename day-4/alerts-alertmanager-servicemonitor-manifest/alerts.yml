@@ -1,0 +1,27 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: custom-alert-rules
+  namespace: monitoring
+  labels:
+    release: monitoring # if you installed through then you've to mention the release name of helm, otherwise prometheus will not recognize it
+spec:
+  groups:
+  - name: custom.rules
+    rules:
+    - alert: HighCpuUsage
+      expr: 100 - (avg by(instance) (rate(node_cpu_seconds_total{mode="idle"}[2m])) * 100) > 50
+      for: 5m
+      labels:
+        severity: warning
+      annotations:
+        summary: "High CPU usage on instance {{ $labels.instance }}"
+        description: "CPU usage is above 50% (current value: {{ $value }}%)"
+    - alert: PodRestart
+      expr: kube_pod_container_status_restarts_total > 2
+      for: 0m
+      labels:
+        severity: critical
+      annotations:
+        summary: "Pod restart detected in namespace {{ $labels.namespace }}"
+        description: "Pod {{ $labels.pod }} in namespace {{ $labels.namespace }} has restarted {{ $value }} times"
