@@ -5,7 +5,7 @@ storage:
     port: 9200
     scheme: https
     user: elastic  # Replace with the actual username if necessary
-    password: cbTQj1qxRIPNF5uc  # Replace with the actual password
+    password: YHlTVI6pUHzWKGsf  # Replace with the actual password
     tls:
       enabled: true
       ca: /tls/ca-cert.pem  # Path where the CA cert is mounted
