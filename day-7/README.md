@@ -94,7 +94,7 @@ eksctl create addon --cluster observability --name aws-ebs-csi-driver --version 
 
 
 ### 🧩 Step 5: Understand the Application
-- We have two very simple microservice A (`microservice-a`) & B (`microservice-a`), Built with Golang using the Gin web framework for handling HTTP requests.
+- We have two very simple microservice A (`microservice-a`) & B (`microservice-b`), Built with Golang using the Gin web framework for handling HTTP requests.
 - **Microservice A** API Endpoints:
     - `GET /hello-a` – Returns a greeting message
     - `GET /call-b` – Calls another service (Service B) and returns its response
