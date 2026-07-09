@@ -1,0 +1,3 @@
+config:
+  my_project:
+    environment: "tst"

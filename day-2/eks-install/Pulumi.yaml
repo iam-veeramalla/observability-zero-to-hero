@@ -1,0 +1,11 @@
+name: eks-install
+runtime:
+  name: python
+  options:
+    toolchain: pip
+    virtualenv: venv
+description: \\
+config:
+  pulumi:tags:
+    value:
+      pulumi:template: https://www.pulumi.com/ai/api/project/10a401b9-bcfc-4828-bd01-062a7b878bf9.zip
