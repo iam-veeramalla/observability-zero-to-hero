@@ -103,6 +103,9 @@ aws eks update-kubeconfig --name observability
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 helm repo update
 ```
+### prometheus installation
+helm install prometheus prometheus-community/prometheus
+
 
 ### 🚀 Step 3: Deploy the chart into a new namespace "monitoring"
 ```bash
