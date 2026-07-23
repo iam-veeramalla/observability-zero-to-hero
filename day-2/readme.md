@@ -22,12 +22,14 @@ Monitoring is the process of keeping an eye on these metrics over time to unders
 - Components:
     - **Retrieval**: This module handles the scraping of metrics from endpoints, which are discovered either through static configurations or dynamic service discovery methods.
     - **TSDB (Time Series Database)**: The data scraped from targets is stored in the TSDB, which is designed to handle high volumes of time-series data efficiently.
+        example:- `at 10:00:06 the CPU capacity was 83%`
     - **HTTP Server**: This provides an API for querying data using PromQL, retrieving metadata, and interacting with other components of the Prometheus ecosystem.
 - **Storage**: The scraped data is stored on local disk (HDD/SSD) in a format optimized for time-series data.
 
 ### 🌐 Service Discovery
 - Service discovery automatically identifies and manages the list of scrape targets (i.e., services or applications) that Prometheus monitors.
-- This is crucial in dynamic environments like Kubernetes where services are constantly being created and destroyed.
+- This is crucial in dynamic environments like Kubernetes where services are constantly being created and destroyed.  
+  example ` out of these 100 application which are in k8s cluster read metrics of only these 30 applications `
 - Components:
     - **Kubernetes**: In Kubernetes environments, Prometheus can automatically discover services, pods, and nodes using Kubernetes API, ensuring it monitors the most up-to-date list of targets.
     - **File SD (Service Discovery)**: Prometheus can also read static target configurations from files, allowing for flexibility in environments where dynamic service discovery is not used.
