@@ -12,7 +12,7 @@
 
 ## 🤔 Why Monitoring?
 - Monitoring helps us keep an eye on our systems to ensure they are working properly.
-- Perpose:  maintaining the **health, performance, and security** of IT environments.
+- Purpose:  maintaining the **health, performance, and security** of IT environments.
 - It enables early detection of issues, ensuring that they can be addressed before causing significant downtime or data loss.
 
 - We use monitoring to:
